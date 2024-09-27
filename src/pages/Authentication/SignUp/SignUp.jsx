@@ -4,6 +4,7 @@ import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
 import Swal from 'sweetalert2';
 import SocialLogins from '../SocialLogins/SocialLogins';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 // Free API to get user's location (using ipapi)
 const userCountry = async () => {
@@ -346,6 +347,13 @@ const SignUp = () => {
                     </div>
 
                 </div>
+            </div>
+
+            {/* Page Title */}
+            <div>
+                <Helmet>
+                    <title>Sign Up for Job Sphere</title>
+                </Helmet>
             </div>
         </div>
     );

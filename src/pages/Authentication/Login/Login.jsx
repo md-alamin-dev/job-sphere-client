@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
 import { Link } from 'react-router-dom';
@@ -155,6 +156,13 @@ const Login = () => {
                 </p>
 
                 {errors.message && <p className="text-red-500 mt-4 text-center">{errors.message}</p>}
+            </div>
+
+            {/* Page Title */}
+            <div>
+                <Helmet>
+                    <title>Login to Job Sphere</title>
+                </Helmet>
             </div>
         </div>
     );
