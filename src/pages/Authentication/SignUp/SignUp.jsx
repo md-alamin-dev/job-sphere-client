@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
 import Swal from 'sweetalert2';
+import SocialLogins from '../SocialLogins/SocialLogins';
+import { Link } from 'react-router-dom';
 
 // Free API to get user's location (using ipapi)
 const userCountry = async () => {
@@ -118,7 +121,7 @@ const SignUp = () => {
 
                 <div className="bg-white my-10 p-8 rounded-lg ">
 
-                    <h2 className="text-2xl md:text-4xl font-bold text-center mb-6">Create an Account</h2>
+                    <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">Create an Account</h2>
 
                     {/* Role Selection */}
                     <div className="mb-6 flex justify-between gap-6">
@@ -149,7 +152,7 @@ const SignUp = () => {
                             {/* Name */}
                             <div className="mb-4">
 
-                                <label className="block mb-1">Name</label>
+                                <label className="block mb-1 font-medium">Name</label>
                                 <input
                                     name="name"
                                     type="text"
@@ -168,7 +171,7 @@ const SignUp = () => {
                             {/* Email */}
                             <div className="mb-4">
 
-                                <label className="block mb-1">Email</label>
+                                <label className="block mb-1 font-medium">Email</label>
 
                                 <input
                                     name="email"
@@ -188,58 +191,84 @@ const SignUp = () => {
 
                             {/* Password */}
                             <div className="mb-4">
+                                <label className="block mb-1 font-medium">Password</label>
 
-                                <label className="block mb-1">Password</label>
+                                {/* Relative container for input and icon */}
+                                <div className="relative">
+                                    <input
+                                        name="password"
+                                        type={showPassword ? "text" : "password"}
+                                        className={`w-full p-2 border rounded transition-colors duration-300 
+                                       
+                                            ${errors.password
+                                                ? "border-red-500"
+                                                : "border-[#feb47b] focus:outline-[#ff7e5f]"}`}
 
-                                <input
-                                    name="password"
-                                    type={showPassword
-                                        ? "text" : "password"}
+                                        {...register("password", {
+                                            required: "Password is required",
+                                            minLength: { value: 6, message: "Password must be at least 6 characters" }
+                                        })}
+                                    />
 
-                                    className={`w-full p-2 border rounded transition-colors duration-300 
-                                        ${errors.password ? "border-red-500" : "border-[#feb47b] focus:outline-[#ff7e5f]"}`}
+                                    {/* Password visibility toggle icon */}
+                                    <button
+                                        onClick={togglePasswordVisibility}
+                                        type="button"
+                                        className="absolute inset-y-0 right-3 flex items-center text-xl"
+                                    >
+                                        <span className="text-[#ff7e5f]">
+                                            {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
+                                        </span>
+                                    </button>
+                                </div>
 
-                                    {...register("password", { required: "Password is required", minLength: { value: 6, message: "Password must be at least 6 characters" } })}
-                                />
-
-                                <button type="button" onClick={togglePasswordVisibility} className="text-sm mt-1">
-                                    {showPassword ? "Hide" : "Show"}
-                                </button>
-
+                                {/* Error message */}
                                 {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-
                             </div>
 
                             {/* Confirm Password */}
                             <div className="mb-4">
+                                <label className="block mb-1 font-medium">Confirm Password</label>
 
-                                <label className="block mb-1">Confirm Password</label>
+                                {/* Relative container for input and icon */}
+                                <div className="relative">
+                                    <input
+                                        name="confirmPassword"
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        className={`w-full p-2 border rounded transition-colors duration-300 
+                                    
+                                            ${errors.confirmPassword
+                                                ? "border-red-500"
+                                                : "border-[#feb47b] focus:outline-[#ff7e5f]"}`}
 
-                                <input
-                                    name="confirmPassword"
-                                    type={showConfirmPassword ? "text" : "password"}
+                                        {...register("confirmPassword", {
+                                            required: "Confirm password is required",
+                                            validate: (value) => value === watch('password') || "Passwords do not match"
+                                        })}
+                                    />
 
-                                    className={`w-full p-2 border rounded transition-colors duration-300 
-                                        ${errors.confirmPassword ? "border-red-500" : "border-[#feb47b] focus:outline-[#ff7e5f]"}`}
+                                    {/* Confirm password visibility toggle icon */}
+                                    <button
+                                        onClick={toggleConfirmPasswordVisibility}
+                                        type="button"
+                                        className="absolute inset-y-0 right-3 flex items-center text-xl"
+                                    >
+                                        <span className="text-[#ff7e5f]">
+                                            {showConfirmPassword ? <IoIosEyeOff /> : <IoIosEye />}
+                                        </span>
+                                    </button>
+                                </div>
 
-                                    {...register("confirmPassword", { required: "Confirm password is required", validate: (value) => value === watch('password') || "Passwords do not match" })}
-
-                                />
-
-                                <button type="button" onClick={toggleConfirmPasswordVisibility}
-
-                                    className="text-sm mt-1">
-                                    {showConfirmPassword ? "Hide" : "Show"}
-                                </button>
-
+                                {/* Error message */}
                                 {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
-
                             </div>
+
+
 
                             {/* Country */}
                             <div className="mb-4">
 
-                                <label className="block mb-1">Country</label>
+                                <label className="block mb-1 font-medium">Country</label>
 
                                 <input
                                     name="country"
@@ -254,7 +283,7 @@ const SignUp = () => {
                             {/* Phone Number */}
                             <div className="mb-4">
 
-                                <label className="block mb-1">Phone Number</label>
+                                <label className="block mb-1 font-medium">Phone Number</label>
 
                                 <div className="flex">
                                     <span className="flex items-center bg-[#feb47b] text-white p-2 border border-[#feb47b] rounded-l">
@@ -293,14 +322,29 @@ const SignUp = () => {
                         <button
                             type="submit"
 
-                            className={`w-full p-2 rounded bg-[#feb47b] text-white transition-colors duration-300 
-                                ${!termsAccepted ? "opacity-50 cursor-not-allowed"
-                                    : "hover:bg-[#ff7e5f]"}`}
+                            className={`w-full p-2 rounded bg-gradient-to-r from-[#ff7e5f] to-[#feb47b] text-white font-medium transition-colors duration-300 
+                                ${!termsAccepted ? "cursor-not-allowed"
+                                    : " hover:from-[#feb47b] hover:to-[#ff7e5f]"}`}
                             disabled={!termsAccepted}
                         >
                             Sign Up
                         </button>
+
                     </form>
+
+                    <div className="text-center mt-6">
+                        <p>Already have an account
+                            <span className='hover:underline font-medium italic text-[#ff7e5f]'>
+                                <Link to={'/login'}> Login </Link>
+                            </span>
+                        </p>
+                        <p className='my-4 italic font-medium'>Or Continue With</p>
+
+                        {
+                            <SocialLogins></SocialLogins>
+                        }
+                    </div>
+
                 </div>
             </div>
         </div>
