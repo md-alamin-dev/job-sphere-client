@@ -1,0 +1,17 @@
+/* Base styles for the NavLink */
+.nav-link {
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover state */
+  .nav-link:hover {
+    color: #ff7e5f;
+  }
+  
+  /* Active state */
+  .nav-link-active {
+    color: #ff7e5f; 
+    font-weight: bold; 
+  }
+  

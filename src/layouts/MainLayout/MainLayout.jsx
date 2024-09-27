@@ -6,14 +6,14 @@ const MainLayout = () => {
 
     return (
 
-        <div>
+        <div className="max-w-full mx-auto">
 
             {/* Header */}
             <header>
                 <Navbar></Navbar>
             </header>
 
-            <main>
+            <main className="min-h-[calc(100vh-284px)] my-16">
                 <Outlet></Outlet>
             </main>
 

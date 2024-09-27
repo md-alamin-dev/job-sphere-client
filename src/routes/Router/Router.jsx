@@ -1,6 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout/MainLayout";
-import Home from "../../pages/HomePage/Home";
+import PostJobs from "../../pages/PostJobs/PostJobs";
+import FindJobs from "../../pages/FindJobs/FindJobs";
+import Home from "../../pages/HomePage/Home/Home";
+import Login from "../../pages/Authentication/Login/Login";
+import SignUp from "../../pages/Authentication/SignUp/SignUp";
 
 const router = createBrowserRouter([
 
@@ -13,6 +17,27 @@ const router = createBrowserRouter([
                 index: true,
                 element: <Home></Home>
             },
+
+            {
+                path: "/post-jobs",
+                element: <PostJobs></PostJobs>
+            },
+
+            {
+                path: "/find-jobs",
+                element: <FindJobs></FindJobs>
+            },
+
+
+            {
+                path: "/login",
+                element: <Login></Login>
+            },
+
+            {
+                path: "/sign-up",
+                element: <SignUp></SignUp>
+            }
         ]
     },
 
