@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
 import TrustedAgency from "../../../components/TrustedAgency/TrustedAgency";
+import Reviews from "../Reviews/Reviews";
 
 const Home = () => {
 
@@ -21,6 +22,11 @@ const Home = () => {
             {/* Trusted Agency Section */}
             <section>
                 <TrustedAgency></TrustedAgency>
+            </section>
+
+            {/* Reviews Section */}
+            <section className="w-11/12 mx-auto">
+                <Reviews></Reviews>
             </section>
 
             <div>

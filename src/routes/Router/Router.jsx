@@ -5,12 +5,15 @@ import FindJobs from "../../pages/FindJobs/FindJobs";
 import Home from "../../pages/HomePage/Home/Home";
 import Login from "../../pages/Authentication/Login/Login";
 import SignUp from "../../pages/Authentication/SignUp/SignUp";
+import ErrorPage from "../../components/Shared/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
 
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+
+        errorElement: <ErrorPage></ErrorPage>,
 
         children: [
             {
